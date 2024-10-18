@@ -6,17 +6,24 @@ const initialState: UserState = {
   role: null,
 };
 
+const storedAuthState = localStorage.getItem("authState");
+const parsedAuthState = storedAuthState
+  ? JSON.parse(storedAuthState)
+  : initialState;
+
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: parsedAuthState,
   reducers: {
     login: (state, action: PayloadAction<{ role: string | null }>) => {
       state.isAuthorized = true;
       state.role = action.payload.role;
+      localStorage.setItem("authState", JSON.stringify(state));
     },
     logout: (state) => {
       state.isAuthorized = false;
       state.role = null;
+      localStorage.removeItem("authState");
     },
   },
 });
