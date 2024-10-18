@@ -1,10 +1,11 @@
 import React from "react";
 import { Provider, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { Analitycs, Dashboard, Home, LandingPage } from "./pages";
+import { LandingPage } from "./pages";
 import store, { RootState } from "./redux/store";
 import { NavBar } from "./components";
 import { Box } from "@mui/material";
+import { routes } from "./routes";
 
 function AppContent() {
   const isAuthorized = useSelector(
@@ -21,9 +22,17 @@ function AppContent() {
     >
       {isAuthorized && <NavBar />}
       <Routes>
-        <Route path="/" element={isAuthorized ? <Home /> : <LandingPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/analitycs" element={<Analitycs />} />
+        {routes.map(
+          ({ path, component: Component, protected: isProtected }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                isProtected && !isAuthorized ? <LandingPage /> : <Component />
+              }
+            />
+          )
+        )}
       </Routes>
     </Box>
   );
