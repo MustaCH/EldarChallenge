@@ -1,4 +1,4 @@
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/slices/authSlice";
@@ -19,16 +19,31 @@ export default function NavBar() {
   return (
     <Stack direction={"row"} justifyContent={"space-between"}>
       <ul className="flex flex-row gap-12 list-none">
-        {routes
-          .filter((route) => isAuthorized || !route.protected)
-          .map((route) => (
-            <li
-              key={route.path}
-              className={`${route.path === "/landing" && "hidden"}`}
-            >
-              <Link to={route.path}>{route.label}</Link>
-            </li>
-          ))}
+        <li>
+          <Link to={"/"}>
+            <Typography>Home</Typography>
+          </Link>
+        </li>
+        <li>
+          <Link to={"/posts"}>
+            <Typography>Posts</Typography>
+          </Link>
+        </li>
+        <li>
+          <Link to={"/albums"}>
+            <Typography>Albums</Typography>
+          </Link>
+        </li>
+        <li>
+          <Link to={"/dashboard"}>
+            <Typography>Dashboard</Typography>
+          </Link>
+        </li>
+        <li>
+          <Link to={"/analitycs"}>
+            <Typography>Analitycs</Typography>
+          </Link>
+        </li>
       </ul>
       <Button onClick={handleLogout}>Logout</Button>
     </Stack>

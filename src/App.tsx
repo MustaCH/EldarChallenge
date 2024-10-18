@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Provider, useSelector } from "react-redux";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { LandingPage } from "./pages";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import {
+  AlbumsPage,
+  Analitycs,
+  Dashboard,
+  Home,
+  LandingPage,
+  PostsPage,
+} from "./pages";
 import store, { RootState } from "./redux/store";
 import { NavBar } from "./components";
 import { Box } from "@mui/material";
-import { routes } from "./routes";
 
 function AppContent() {
   const isAuthorized = useSelector(
     (state: RootState) => state.auth.isAuthorized
   );
+
+  const navigate = useNavigate();
+
+  // Redirige según el estado de autenticación
+  useEffect(() => {
+    if (!isAuthorized) {
+      navigate("/"); // Redirige a Home si está autenticado
+    }
+  }, [isAuthorized, navigate]);
 
   return (
     <Box
@@ -22,17 +42,11 @@ function AppContent() {
     >
       {isAuthorized && <NavBar />}
       <Routes>
-        {routes.map(
-          ({ path, component: Component, protected: isProtected }) => (
-            <Route
-              key={path}
-              path={path}
-              element={
-                isProtected && !isAuthorized ? <LandingPage /> : <Component />
-              }
-            />
-          )
-        )}
+        <Route path="/" element={isAuthorized ? <Home /> : <LandingPage />} />
+        <Route path="/posts" element={<PostsPage />} />
+        <Route path="/albums" element={<AlbumsPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/analitycs" element={<Analitycs />} />
       </Routes>
     </Box>
   );
