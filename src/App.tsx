@@ -25,10 +25,9 @@ function AppContent() {
 
   const navigate = useNavigate();
 
-  // Redirige según el estado de autenticación
   useEffect(() => {
     if (!isAuthorized) {
-      navigate("/"); // Redirige a Home si está autenticado
+      navigate("/");
     }
   }, [isAuthorized, navigate]);
 
