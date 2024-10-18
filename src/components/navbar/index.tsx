@@ -6,7 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { routes } from "../../routes";
 import { RootState } from "../../redux/store";
 
-export default function NavBar() {
+interface NavBarProps {
+  isAdmin: boolean;
+}
+
+export default function NavBar({ isAdmin }: NavBarProps) {
   const dispatch = useDispatch();
   const isAuthorized = useSelector(
     (state: RootState) => state.auth.isAuthorized
@@ -34,16 +38,20 @@ export default function NavBar() {
             <Typography>Albums</Typography>
           </Link>
         </li>
-        <li>
-          <Link to={"/dashboard"}>
-            <Typography>Dashboard</Typography>
-          </Link>
-        </li>
-        <li>
-          <Link to={"/analitycs"}>
-            <Typography>Analitycs</Typography>
-          </Link>
-        </li>
+        {isAdmin && (
+          <>
+            <li>
+              <Link to={"/dashboard"}>
+                <Typography>Dashboard</Typography>
+              </Link>
+            </li>
+            <li>
+              <Link to={"/analitycs"}>
+                <Typography>Analitycs</Typography>
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
       <Button onClick={handleLogout}>Logout</Button>
     </Stack>

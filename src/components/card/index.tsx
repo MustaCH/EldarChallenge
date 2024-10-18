@@ -12,12 +12,13 @@ interface CardItemProps {
 export default function CardItem({ label, icon, path, color }: CardItemProps) {
   return (
     <Grid2 size={{ xs: 8, md: 6 }} alignItems={"center"}>
-      <Link to={path}>
+      <Link to={path} className="no-underline">
         <Box
-          className={`flex flex-col justify-end items-start h-20 p-8 bg-[${color}]`}
+          className={`flex flex-col justify-end items-start h-20 p-8 rounded-lg 	`}
+          sx={{ backgroundColor: color }}
         >
           <img src={icon} alt={label} />
-          <Typography>{label}</Typography>
+          <Typography className="no-underline">{label}</Typography>
         </Box>
       </Link>
     </Grid2>

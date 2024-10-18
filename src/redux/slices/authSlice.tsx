@@ -28,5 +28,11 @@ const authSlice = createSlice({
   },
 });
 
+export const selectIsAuthorized = (state: { auth: UserState }) =>
+  state.auth.isAuthorized;
+export const selectUserRole = (state: { auth: UserState }) => state.auth.role;
+export const isRole = (role: string) => (state: { auth: UserState }) =>
+  state.auth.role === role;
+
 export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;

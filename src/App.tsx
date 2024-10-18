@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Children, useEffect } from "react";
 import { Provider, useSelector } from "react-redux";
 import {
   Route,
@@ -17,11 +17,16 @@ import {
 import store, { RootState } from "./redux/store";
 import { NavBar } from "./components";
 import { Box } from "@mui/material";
+import ProtectedRoutes from "./components/navbar/protected-routes";
+import {
+  isRole,
+  selectIsAuthorized,
+  selectUserRole,
+} from "./redux/slices/authSlice";
 
 function AppContent() {
-  const isAuthorized = useSelector(
-    (state: RootState) => state.auth.isAuthorized
-  );
+  const isAuthorized = useSelector(selectIsAuthorized);
+  const isAdmin = useSelector((state: RootState) => isRole("admin")(state));
 
   const navigate = useNavigate();
 
@@ -39,13 +44,17 @@ function AppContent() {
         padding: "0 16px",
       }}
     >
-      {isAuthorized && <NavBar />}
+      {isAuthorized && <NavBar isAdmin={isAdmin} />}
       <Routes>
         <Route path="/" element={isAuthorized ? <Home /> : <LandingPage />} />
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/albums" element={<AlbumsPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/analitycs" element={<Analitycs />} />
+        <Route
+          element={<ProtectedRoutes isAuthorized={isAdmin} redirectTo="/" />}
+        >
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/analitycs" element={<Analitycs />} />
+        </Route>
       </Routes>
     </Box>
   );

@@ -32,7 +32,7 @@ const customUsers: User[] = [
     name: "Regular User",
     username: "regular_user2",
     email: "user@example.com",
-    password: "regular!user",
+    password: "regular!user1",
     address: {
       street: "User Street",
       suite: "Apt. 2",

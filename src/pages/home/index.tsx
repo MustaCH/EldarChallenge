@@ -5,7 +5,11 @@ import { routes } from "../../routes";
 
 export default function Home() {
   return (
-    <Grid2 container spacing={4} sx={{ placeContent: "center" }}>
+    <Grid2
+      container
+      spacing={10}
+      sx={{ placeContent: "center", height: "80vh" }}
+    >
       {routes.map((route) => (
         <CardItem
           key={route.id}
