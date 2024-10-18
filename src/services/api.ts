@@ -7,6 +7,7 @@ const customUsers: User[] = [
     id: 11,
     name: "Admin User",
     username: "admin_user",
+    password: "admin!user1",
     email: "admin@example.com",
     address: {
       street: "Admin Street",
@@ -29,8 +30,9 @@ const customUsers: User[] = [
   {
     id: 12,
     name: "Regular User",
-    username: "regular_user",
+    username: "regular_user2",
     email: "user@example.com",
+    password: "regular!user",
     address: {
       street: "User Street",
       suite: "Apt. 2",
@@ -51,14 +53,14 @@ const customUsers: User[] = [
   },
 ];
 
-export const fetchUsers = async (): Promise<User[]> => {
+export const getUsers = async (): Promise<User[]> => {
   const { data } = await axios.get(
     "https://jsonplaceholder.typicode.com/users"
   );
   return [...data, ...customUsers];
 };
 
-export const fetchPosts = async (): Promise<Post[]> => {
+export const getPosts = async (): Promise<Post[]> => {
   const { data } = await axios.get(
     "https://jsonplaceholder.typicode.com/posts"
   );
