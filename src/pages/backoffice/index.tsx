@@ -1,7 +1,17 @@
 import { Box, Button, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Table } from "../../components";
-import { getUsers, getPosts, getAlbums } from "../../services/api";
+import {
+  getUsers,
+  getPosts,
+  getAlbums,
+  updatePost,
+  updateAlbum,
+  deletePost,
+  deleteAlbum,
+  deleteUser,
+  updateUser,
+} from "../../services/api";
 import { Post, Album } from "../../types/data";
 import { User } from "../../types/user";
 import SearchBar from "../../components/search-bar";
@@ -12,9 +22,7 @@ type DataType = "users" | "posts" | "albums";
 export default function Backoffice() {
   const [dataType, setDataType] = useState<DataType>("users");
   const [data, setData] = useState<User[] | Post[] | Album[]>([]);
-  const [filteredData, setFilteredData] = useState<User[] | Album[] | Post[]>(
-    []
-  );
+  const [filteredData, setFilteredData] = useState<(User | Album | Post)[]>([]);
   const [selectedItem, setSelectedItem] = useState<User | Album | Post>();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -47,12 +55,59 @@ export default function Backoffice() {
     setIsModalOpen(true);
   };
 
-  const handleSave = (updatedItem: User | Album | Post) => {
-    setIsModalOpen(false);
+  const handleSave = async (updatedItem: User | Album | Post) => {
+    try {
+      if ("name" in updatedItem) {
+        await updateUser(updatedItem as User);
+      } else if ("title" in updatedItem) {
+        if ("userId" in updatedItem) {
+          await updatePost(updatedItem as Post);
+        } else {
+          await updateAlbum(updatedItem as Album);
+        }
+      }
+
+      setFilteredData((prevData) => {
+        return prevData.map((item) => {
+          if ("name" in updatedItem && "name" in item) {
+            return item.id === updatedItem.id ? (updatedItem as User) : item;
+          }
+          if ("title" in updatedItem && "title" in item) {
+            return item.id === updatedItem.id
+              ? (updatedItem as Album | Post)
+              : item;
+          }
+          return item;
+        });
+      });
+
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error al guardar:", error);
+    }
   };
 
-  const handleDelete = () => {
-    setIsModalOpen(false);
+  const handleDelete = async () => {
+    try {
+      if (selectedItem) {
+        if ("name" in selectedItem) {
+          await deleteUser(selectedItem.id);
+        } else if ("title" in selectedItem) {
+          if ("userId" in selectedItem) {
+            await deletePost(selectedItem.id);
+          } else {
+            await deleteAlbum(selectedItem);
+          }
+        }
+        setIsModalOpen(false);
+        setFilteredData(
+          filteredData.filter((item) => item.id !== selectedItem.id)
+        );
+        setSelectedItem(undefined);
+      }
+    } catch (error) {
+      console.error("Error al eliminar:", error);
+    }
   };
 
   useEffect(() => {
