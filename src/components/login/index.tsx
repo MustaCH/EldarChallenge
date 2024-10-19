@@ -60,6 +60,16 @@ export default function Login({ handleLogin, error }: LoginProps) {
                 onBlur={form.handleBlur}
                 error={form.touched.user && Boolean(form.errors.user)}
                 helperText={form.touched.user && form.errors.user}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               <TextField
                 name="password"
@@ -71,13 +81,28 @@ export default function Login({ handleLogin, error }: LoginProps) {
                 onBlur={form.handleBlur}
                 error={form.touched.password && Boolean(form.errors.password)}
                 helperText={form.touched.password && form.errors.password}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               {error && (
                 <Typography color="error">
                   Usuario o contraseña incorrectos
                 </Typography>
               )}
-              <Button type="submit" variant="contained" sx={{ marginY: "8px" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ marginY: "8px" }}
+                className="bg-[#3e8e78] text-[#f3faf7]"
+              >
                 Iniciar Sesión
               </Button>
             </FormControl>

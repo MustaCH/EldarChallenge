@@ -96,7 +96,7 @@ export default function NavBar({ isAuthorized }: NavBarProps) {
             PaperProps={{
               sx: {
                 backgroundColor: "#64af99",
-                color: "#0f241f",
+                color: "#f3faf7",
                 width: 250,
               },
             }}
