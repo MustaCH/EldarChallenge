@@ -48,13 +48,13 @@ export default function NavBar({ isAuthorized }: NavBarProps) {
       <ListItem component={Link} to="/">
         <ListItemText
           primary="Home"
-          className="hover:text-[#0f241f] text-[#f3faf7] duration-300 "
+          className="hover:text-[#0f241f] text-[#f3faf7] duration-300"
         />
       </ListItem>
       <ListItem component={Link} to="/posts">
         <ListItemText
           primary="Posts"
-          className="hover:text-[#0f241f] text-[#f3faf7] duration-300 "
+          className="hover:text-[#0f241f] text-[#f3faf7] duration-300"
         />
       </ListItem>
       <ListItem component={Link} to="/albums">
@@ -111,7 +111,10 @@ export default function NavBar({ isAuthorized }: NavBarProps) {
           {menuItems}
         </List>
       )}
-      <Button className="text-[#f3faf7]" onClick={handleLogout}>
+      <Button
+        className="flex justify-end text-[#f3faf7] p-0"
+        onClick={handleLogout}
+      >
         <LogoutIcon />
       </Button>
     </Stack>

@@ -21,7 +21,7 @@ export default function PostsPage() {
   }, []);
 
   return (
-    <Stack className="gap-12 p-16">
+    <Stack className="gap-12 p-8 md:p-16">
       {posts?.map((post) => (
         <Box key={post.id}>
           <PostItem
