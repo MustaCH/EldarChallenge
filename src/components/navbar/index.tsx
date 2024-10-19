@@ -18,34 +18,46 @@ export default function NavBar({ isAuthorized }: NavBarProps) {
     alert("Cerrando sesión");
   };
   return (
-    <Stack direction={"row"} justifyContent={"space-between"}>
-      <ul className="flex flex-row items-center gap-12 list-none">
+    <Stack
+      direction={"row"}
+      justifyContent={"space-between"}
+      className="bg-[#64af99]"
+    >
+      <ul className="flex flex-row items-center gap-12 list-none ">
         <li>
           <Link to={"/"} className="no-underline">
-            <Typography>Home</Typography>
+            <Typography className="text-[#0f241f] hover:text-[#f3faf7] duration-300 font-semibold">
+              Home
+            </Typography>
           </Link>
         </li>
         <li>
           <Link to={"/posts"} className="no-underline">
-            <Typography>Posts</Typography>
+            <Typography className="text-[#0f241f] hover:text-[#f3faf7] duration-300 font-semibold">
+              Posts
+            </Typography>
           </Link>
         </li>
         <li>
           <Link to={"/albums"} className="no-underline">
-            <Typography>Albums</Typography>
+            <Typography className="text-[#0f241f] hover:text-[#f3faf7] duration-300 font-semibold">
+              Albums
+            </Typography>
           </Link>
         </li>
         {isAuthorized && (
-          <li className="bg-sky-400 hover:bg-transparent px-4 py-1 rounded-md group">
+          <li className="bg-[#3e8e78] hover:bg-[#307160] duration-300 px-4 py-1 rounded-md">
             <Link to={"/backoffice"} className="no-underline ">
-              <Typography className="font-semibold text-neutral-100 group-hover:text-black duration-300">
+              <Typography className="font-semibold text-[#f3faf7] ">
                 Backoffice
               </Typography>
             </Link>
           </li>
         )}
       </ul>
-      <Button onClick={handleLogout}>Logout</Button>
+      <Button className="text-[#f3faf7]" onClick={handleLogout}>
+        CERRAR SESIÓN
+      </Button>
     </Stack>
   );
 }

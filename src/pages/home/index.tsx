@@ -11,8 +11,12 @@ export default function Home({ isAuthorized }: HomeProps) {
   return (
     <Grid2
       container
-      spacing={10}
-      sx={{ placeContent: "center", height: "80vh" }}
+      spacing={{ xs: 2, md: 6 }}
+      sx={{
+        placeContent: "center",
+        paddingY: { xs: "2rem", md: "4rem" },
+        paddingX: { xs: "0.2rem", md: "2rem" },
+      }}
     >
       {routes
         .filter((route) => isAuthorized || route.path !== "/backoffice")
