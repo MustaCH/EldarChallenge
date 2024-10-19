@@ -9,8 +9,7 @@ import {
 import {
   AlbumDetailPage,
   AlbumsPage,
-  Analitycs,
-  Dashboard,
+  Backoffice,
   Home,
   LandingPage,
   PostsPage,
@@ -54,8 +53,7 @@ function AppContent() {
         <Route
           element={<ProtectedRoutes isAuthorized={isAdmin} redirectTo="/" />}
         >
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/analitycs" element={<Analitycs />} />
+          <Route path="/backoffice" element={<Backoffice />} />
         </Route>
       </Routes>
     </Box>

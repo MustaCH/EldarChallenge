@@ -22,35 +22,30 @@ export default function NavBar({ isAdmin }: NavBarProps) {
   };
   return (
     <Stack direction={"row"} justifyContent={"space-between"}>
-      <ul className="flex flex-row gap-12 list-none">
+      <ul className="flex flex-row items-center gap-12 list-none">
         <li>
-          <Link to={"/"}>
+          <Link to={"/"} className="no-underline">
             <Typography>Home</Typography>
           </Link>
         </li>
         <li>
-          <Link to={"/posts"}>
+          <Link to={"/posts"} className="no-underline">
             <Typography>Posts</Typography>
           </Link>
         </li>
         <li>
-          <Link to={"/albums"}>
+          <Link to={"/albums"} className="no-underline">
             <Typography>Albums</Typography>
           </Link>
         </li>
         {isAdmin && (
-          <>
-            <li>
-              <Link to={"/dashboard"}>
-                <Typography>Dashboard</Typography>
-              </Link>
-            </li>
-            <li>
-              <Link to={"/analitycs"}>
-                <Typography>Analitycs</Typography>
-              </Link>
-            </li>
-          </>
+          <li className="bg-sky-400 hover:bg-transparent px-4 py-1 rounded-md group">
+            <Link to={"/backoffice"} className="no-underline ">
+              <Typography className="font-semibold text-neutral-100 group-hover:text-black duration-300">
+                Backoffice
+              </Typography>
+            </Link>
+          </li>
         )}
       </ul>
       <Button onClick={handleLogout}>Logout</Button>

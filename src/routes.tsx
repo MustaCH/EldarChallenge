@@ -17,18 +17,10 @@ export const routes = [
   },
   {
     id: 5,
-    path: "/dashboard",
-    label: "Dashboard",
+    path: "/backoffice",
+    label: "Backoffice",
     protected: false,
     iconUrl: "",
     color: "#6366f1",
-  },
-  {
-    id: 4,
-    path: "/analitycs",
-    label: "Analitycs",
-    protected: false,
-    iconUrl: "",
-    color: "#d946ef",
   },
 ];
