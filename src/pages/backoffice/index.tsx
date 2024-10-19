@@ -1,6 +1,6 @@
 import { Box, Button, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Table } from "../../components";
+import { CreateUserModal, Table } from "../../components";
 import {
   getUsers,
   getPosts,
@@ -11,6 +11,7 @@ import {
   deleteAlbum,
   deleteUser,
   updateUser,
+  createUser,
 } from "../../services/api";
 import { Post, Album } from "../../types/data";
 import { User } from "../../types/user";
@@ -25,6 +26,7 @@ export default function Backoffice() {
   const [filteredData, setFilteredData] = useState<(User | Album | Post)[]>([]);
   const [selectedItem, setSelectedItem] = useState<User | Album | Post>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleSearch = (query: string) => {
     let filtered: User[] | Album[] | Post[] = [];
@@ -110,6 +112,16 @@ export default function Backoffice() {
     }
   };
 
+  const handleCreateUser = async (newUser: User) => {
+    try {
+      await createUser(newUser);
+      setFilteredData([...filteredData, newUser]);
+      setIsCreateModalOpen(false);
+    } catch (error) {
+      console.error("Error al crear usuario:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       let fetchedData: User[] | Post[] | Album[] = [];
@@ -141,7 +153,12 @@ export default function Backoffice() {
         marginY={"2rem"}
       >
         <Box>
-          <Button variant="contained">+ Nuevo usuario</Button>
+          <Button
+            variant="contained"
+            onClick={() => setIsCreateModalOpen(true)}
+          >
+            + Nuevo usuario
+          </Button>
         </Box>
         <Stack flexDirection={"row"} gap={"2rem"}>
           <Button onClick={() => setDataType("users")}>Buscar usuario</Button>
@@ -161,6 +178,11 @@ export default function Backoffice() {
             onDelete={handleDelete}
           />
         )}
+        <CreateUserModal
+          open={isCreateModalOpen}
+          onClose={() => setIsCreateModalOpen(false)}
+          onSave={handleCreateUser}
+        />
       </Box>
     </Stack>
   );

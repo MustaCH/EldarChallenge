@@ -79,11 +79,11 @@ const EditModal: React.FC<EditModalProps> = ({
       >
         <Typography variant="h6" mb={2}>
           {isUser(data)
-            ? "Edit User"
+            ? "Editar Usuario"
             : isAlbum(data)
-            ? "Edit Album"
+            ? "Editar Album"
             : isPost(data)
-            ? "Edit Post"
+            ? "Editar Post"
             : ""}
         </Typography>
 
