@@ -7,6 +7,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import {
+  AlbumDetailPage,
   AlbumsPage,
   Analitycs,
   Dashboard,
@@ -49,6 +50,7 @@ function AppContent() {
         <Route path="/" element={isAuthorized ? <Home /> : <LandingPage />} />
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/albums" element={<AlbumsPage />} />
+        <Route path="/albums/:id" element={<AlbumDetailPage />} />
         <Route
           element={<ProtectedRoutes isAuthorized={isAdmin} redirectTo="/" />}
         >

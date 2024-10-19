@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Photo, Post } from "../types/data";
+import { Album, Photo, Post } from "../types/data";
 import { User } from "../types/user";
 
 const customUsers: User[] = [
@@ -67,9 +67,23 @@ export const getPosts = async (): Promise<Post[]> => {
   return data;
 };
 
+export const getAlbums = async (): Promise<Album[]> => {
+  const { data } = await axios.get(
+    "https://jsonplaceholder.typicode.com/albums"
+  );
+  return data;
+};
+
+export const getAlbumById = async (id: number): Promise<Album> => {
+  const { data } = await axios.get(
+    `https://jsonplaceholder.typicode.com/albums/${id}`
+  );
+  return data;
+};
+
 export const getPhotos = async (): Promise<Photo[]> => {
   const { data } = await axios.get(
-    "https://jsonplaceholder.typicode.com/photos?albumId=1&albumId=2"
+    "https://jsonplaceholder.typicode.com/photos"
   );
   return data;
 };

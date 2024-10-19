@@ -6,6 +6,12 @@ export interface Photo {
   thumbnailUrl: string;
 }
 
+export interface Album {
+  userId: number;
+  id: number;
+  title: string;
+}
+
 export interface Post {
   userId: number;
   id: number;
