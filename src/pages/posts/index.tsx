@@ -12,7 +12,6 @@ export default function PostsPage() {
       try {
         const post = await getPosts();
         setPosts(post);
-        console.log(post);
       } catch (error) {
         console.error("Error al cargar los posts:", error);
       }

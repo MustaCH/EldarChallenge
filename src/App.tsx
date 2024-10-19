@@ -44,9 +44,14 @@ function AppContent() {
         padding: "0 16px",
       }}
     >
-      {isAuthorized && <NavBar isAdmin={isAdmin} />}
+      {isAuthorized && <NavBar isAuthorized={isAdmin} />}
       <Routes>
-        <Route path="/" element={isAuthorized ? <Home /> : <LandingPage />} />
+        <Route
+          path="/"
+          element={
+            isAuthorized ? <Home isAuthorized={isAdmin} /> : <LandingPage />
+          }
+        />
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/albums" element={<AlbumsPage />} />
         <Route path="/albums/:id" element={<AlbumDetailPage />} />

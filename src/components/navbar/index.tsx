@@ -7,14 +7,11 @@ import { routes } from "../../routes";
 import { RootState } from "../../redux/store";
 
 interface NavBarProps {
-  isAdmin: boolean;
+  isAuthorized: boolean;
 }
 
-export default function NavBar({ isAdmin }: NavBarProps) {
+export default function NavBar({ isAuthorized }: NavBarProps) {
   const dispatch = useDispatch();
-  const isAuthorized = useSelector(
-    (state: RootState) => state.auth.isAuthorized
-  );
 
   const handleLogout = () => {
     dispatch(logout());
@@ -38,7 +35,7 @@ export default function NavBar({ isAdmin }: NavBarProps) {
             <Typography>Albums</Typography>
           </Link>
         </li>
-        {isAdmin && (
+        {isAuthorized && (
           <li className="bg-sky-400 hover:bg-transparent px-4 py-1 rounded-md group">
             <Link to={"/backoffice"} className="no-underline ">
               <Typography className="font-semibold text-neutral-100 group-hover:text-black duration-300">

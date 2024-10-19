@@ -11,7 +11,11 @@ interface CardItemProps {
 
 export default function CardItem({ label, icon, path, color }: CardItemProps) {
   return (
-    <Grid2 size={{ xs: 8, md: 6 }} alignItems={"center"}>
+    <Grid2
+      size={{ xs: 8, md: 6 }}
+      alignItems={"center"}
+      className={"hover:scale-110 duration-300"}
+    >
       <Link to={path} className="no-underline">
         <Box
           className={`flex flex-col justify-end items-start h-20 p-8 rounded-lg 	`}
