@@ -21,10 +21,8 @@ export default function PostsPage() {
   }, []);
 
   return (
-    <Stack className="gap-12 p-8 md:p-16">
-      <Typography className="text-3xl font-bold my-8 text-center">
-        Posts
-      </Typography>
+    <Stack className="gap-12 p-8 md:p-12">
+      <Typography className="text-3xl font-bold text-center">Posts</Typography>
       {posts?.map((post) => (
         <Box key={post.id}>
           <PostItem

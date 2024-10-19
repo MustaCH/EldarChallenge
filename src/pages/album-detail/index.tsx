@@ -39,24 +39,28 @@ export default function AlbumDetailPage() {
       <Typography className="text-center text-3xl font-semibold capitalize mt-12">
         {album.title}
       </Typography>
-      <Grid2 container spacing={6} className={"mb-12"}>
+      <Grid2 container spacing={{ xs: 4, md: 6 }} className={"mb-12 p-8"}>
         {photos.map((photo) => (
-          <Grid2 size={4} key={photo.id}>
+          <Grid2 size={{ xs: 6, md: 4 }} key={photo.id}>
             <Stack justifyContent={"center"} alignItems={"center"}>
               {isLoading ? (
                 <Box className={"h-52 bg-gray-400 animate-pulse"}>
                   <Typography>Cargando...</Typography>
                 </Box>
               ) : (
-                <Box className={"h-56"}>
+                <Box>
                   <img
-                    className="w-56 rounded-md"
+                    className="w-32 md:w-56 rounded-md"
                     src={photo.url}
                     alt={photo.title}
                   />
                 </Box>
               )}
-              <Typography className="text-sm w-52">{photo.title}</Typography>
+              <Box>
+                <Typography className="text-xs md:text-sm capitalize font-medium text-center">
+                  {photo.title}
+                </Typography>
+              </Box>
             </Stack>
           </Grid2>
         ))}
