@@ -59,7 +59,7 @@ export default function NavBar({ isAuthorized }: NavBarProps) {
       </ListItem>
       <ListItem component={Link} to="/albums">
         <ListItemText
-          primary="Albums"
+          primary="Álbumes"
           className="hover:text-[#0f241f] text-[#f3faf7] duration-300"
         />
       </ListItem>

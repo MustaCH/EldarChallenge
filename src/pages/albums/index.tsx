@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Album } from "../../types/data";
 import { getAlbums } from "../../services/api";
 import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
+import StartIcon from "@mui/icons-material/Start";
 
 export default function AlbumsPage() {
   const [albums, setAlbums] = useState<Album[]>([]);
@@ -21,11 +23,24 @@ export default function AlbumsPage() {
 
   return (
     <div>
-      <h1>Álbumes</h1>
-      <ul>
+      <Typography className="text-3xl font-bold my-8 text-center">
+        Álbumes
+      </Typography>
+      <ul className="flex flex-col gap-6 p-0">
         {albums.map((album) => (
-          <li key={album.id}>
-            <Link to={`/albums/${album.id}`}>{album.title}</Link>
+          <li
+            key={album.id}
+            className="list-none bg-[#b1decd] p-4 rounded-md drop-shadow-lg"
+          >
+            <Link
+              to={`/albums/${album.id}`}
+              className="flex justify-between items-center no-underline capitalize"
+            >
+              <Typography className="text-xl font-semibold text-[#0f241f]">
+                {album.title}
+              </Typography>
+              <StartIcon className="text-xl font-semibold text-[#0f241f]" />
+            </Link>
           </li>
         ))}
       </ul>

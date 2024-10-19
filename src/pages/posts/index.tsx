@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { PostItem } from "../../components";
 import { Post } from "../../types/data";
@@ -22,6 +22,9 @@ export default function PostsPage() {
 
   return (
     <Stack className="gap-12 p-8 md:p-16">
+      <Typography className="text-3xl font-bold my-8 text-center">
+        Posts
+      </Typography>
       {posts?.map((post) => (
         <Box key={post.id}>
           <PostItem
