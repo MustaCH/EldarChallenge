@@ -155,18 +155,34 @@ export default function Backoffice() {
         <Box>
           <Button
             variant="contained"
+            className="bg-[#3e8e78] text-[#f3faf7] text-xs md:text-md"
             onClick={() => setIsCreateModalOpen(true)}
           >
             + Nuevo usuario
           </Button>
         </Box>
-        <Stack flexDirection={"row"} gap={"2rem"}>
-          <Button onClick={() => setDataType("users")}>Buscar usuario</Button>
-          <Button onClick={() => setDataType("posts")}>Buscar post</Button>
-          <Button onClick={() => setDataType("albums")}>Buscar álbum</Button>
+        <Stack flexDirection={"row"} gap={{ xs: "0.5rem", md: "2rem" }}>
+          <Button
+            onClick={() => setDataType("users")}
+            className="text-[#3e8e78] text-xs md:text-md"
+          >
+            Buscar usuario
+          </Button>
+          <Button
+            onClick={() => setDataType("posts")}
+            className="text-[#3e8e78] text-xs md:text-md"
+          >
+            Buscar post
+          </Button>
+          <Button
+            onClick={() => setDataType("albums")}
+            className="text-[#3e8e78] text-xs md:text-md"
+          >
+            Buscar álbum
+          </Button>
         </Stack>
       </Stack>
-      <Box>
+      <Stack gap={"2rem"}>
         <SearchBar onSearch={handleSearch} dataType={dataType} />
         <Table data={filteredData} onEdit={handleEdit} />
         {selectedItem && (
@@ -183,7 +199,7 @@ export default function Backoffice() {
           onClose={() => setIsCreateModalOpen(false)}
           onSave={handleCreateUser}
         />
-      </Box>
+      </Stack>
     </Stack>
   );
 }

@@ -128,6 +128,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.name}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </Grid2>
             <Grid2 size={6}>
@@ -137,6 +147,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.username}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </Grid2>
           </Grid2>
@@ -148,6 +168,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.email}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </Grid2>
             <Grid2 size={6}>
@@ -157,6 +187,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.password}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
                 type="password"
               />
             </Grid2>
@@ -170,6 +210,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.address.street}
                 onChange={handleAddressChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </Grid2>
             <Grid2 size={4}>
@@ -179,6 +229,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.address.suite}
                 onChange={handleAddressChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </Grid2>
           </Grid2>
@@ -190,6 +250,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.address.city}
                 onChange={handleAddressChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </Grid2>
             <Grid2 size={4}>
@@ -199,6 +269,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
                 value={formData.address.zipcode}
                 onChange={handleAddressChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </Grid2>
           </Grid2>
@@ -209,6 +289,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
             value={formData.phone}
             onChange={handleChange}
             fullWidth
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "&.Mui-focused fieldset": {
+                  borderColor: "#3e8e78",
+                },
+              },
+              "& label.Mui-focused": {
+                color: "#3e8e78",
+              },
+            }}
           />
           <TextField
             label="Sitio Web"
@@ -216,6 +306,16 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
             value={formData.website}
             onChange={handleChange}
             fullWidth
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "&.Mui-focused fieldset": {
+                  borderColor: "#3e8e78",
+                },
+              },
+              "& label.Mui-focused": {
+                color: "#3e8e78",
+              },
+            }}
           />
           <FormLabel component="legend">Rol de Usuario</FormLabel>
           <RadioGroup
@@ -227,18 +327,36 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
           >
             <FormControlLabel
               value="user"
-              control={<Radio />}
+              control={
+                <Radio
+                  sx={{
+                    color: "#3e8e78",
+                    "&.Mui-checked": { color: "#3e8e78" },
+                  }}
+                />
+              }
               label="Usuario"
             />
-            <FormControlLabel value="admin" control={<Radio />} label="Admin" />
+            <FormControlLabel
+              value="admin"
+              control={
+                <Radio
+                  sx={{
+                    color: "#3e8e78",
+                    "&.Mui-checked": { color: "#3e8e78" },
+                  }}
+                />
+              }
+              label="Admin"
+            />
           </RadioGroup>
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="secondary">
+        <Button onClick={onClose} color="error">
           Cancelar
         </Button>
-        <Button onClick={handleSave} color="primary">
+        <Button onClick={handleSave} sx={{ color: "#3e8e78" }}>
           Guardar
         </Button>
       </DialogActions>

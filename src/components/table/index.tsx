@@ -16,7 +16,7 @@ type TableData = User | Album | Post;
 
 interface TableProps {
   data: TableData[];
-  onEdit: (item: TableData) => void; 
+  onEdit: (item: TableData) => void;
 }
 
 export default function Table({ data, onEdit }: TableProps) {
@@ -50,8 +50,8 @@ export default function Table({ data, onEdit }: TableProps) {
               <TableCell>
                 <Button
                   variant="outlined"
-                  color="primary"
-                  onClick={() => onEdit(item)} 
+                  className="border-2 border-[#3e8e78] text-[#3e8e78]"
+                  onClick={() => onEdit(item)}
                 >
                   Editar
                 </Button>

@@ -70,9 +70,9 @@ const EditModal: React.FC<EditModalProps> = ({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
           bgcolor: "background.paper",
           boxShadow: 24,
+          width: { xs: "80vw", md: "400px" },
           p: 4,
           borderRadius: "8px",
         }}
@@ -96,6 +96,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 value={formData.name}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               <TextField
                 label="Username"
@@ -103,6 +113,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 value={formData.username}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               <TextField
                 label="Email"
@@ -110,6 +130,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 value={formData.email}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               <TextField
                 label="Phone"
@@ -117,6 +147,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 value={formData.phone}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </>
           )}
@@ -129,6 +169,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 value={formData.title}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               <TextField
                 label="ID"
@@ -137,6 +187,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 onChange={handleChange}
                 fullWidth
                 disabled
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </>
           )}
@@ -149,6 +209,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 value={formData.title}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               <TextField
                 label="User ID"
@@ -156,6 +226,16 @@ const EditModal: React.FC<EditModalProps> = ({
                 value={formData.userId}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
               <TextField
                 label="ID"
@@ -164,17 +244,31 @@ const EditModal: React.FC<EditModalProps> = ({
                 onChange={handleChange}
                 fullWidth
                 disabled
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#3e8e78",
+                    },
+                  },
+                  "& label.Mui-focused": {
+                    color: "#3e8e78",
+                  },
+                }}
               />
             </>
           )}
 
           {/* Botones */}
           <Stack direction="row" spacing={2} justifyContent="flex-end">
-            <Button variant="contained" color="primary" onClick={handleSave}>
-              Save
-            </Button>
             <Button variant="outlined" color="error" onClick={onDelete}>
-              Delete
+              ELIMINAR
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{ color: "#3e8e78", border: "#3e8e78" }}
+              onClick={handleSave}
+            >
+              GUARDAR
             </Button>
           </Stack>
         </Stack>

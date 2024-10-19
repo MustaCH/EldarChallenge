@@ -15,7 +15,12 @@ export default function SearchBar({ onSearch, dataType }: SearchBarProps) {
   };
 
   return (
-    <Stack direction="row" spacing={2} alignItems="center">
+    <Stack
+      direction="row"
+      spacing={2}
+      alignItems="center"
+      justifyContent={{ xs: "space-between", md: "start" }}
+    >
       <TextField
         label={`Buscar por ${
           dataType === "users" ? "ID o Nombre" : "ID o Título"
@@ -23,8 +28,22 @@ export default function SearchBar({ onSearch, dataType }: SearchBarProps) {
         variant="outlined"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "&.Mui-focused fieldset": {
+              borderColor: "#3e8e78",
+            },
+          },
+          "& label.Mui-focused": {
+            color: "#3e8e78",
+          },
+        }}
       />
-      <Button variant="contained" onClick={handleSearch}>
+      <Button
+        variant="contained"
+        onClick={handleSearch}
+        className="bg-[#3e8e78] text-[#f3faf7]"
+      >
         Buscar
       </Button>
     </Stack>
