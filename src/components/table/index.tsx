@@ -6,6 +6,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Button,
 } from "@mui/material";
 import React from "react";
 import { Album, Post } from "../../types/data";
@@ -15,9 +16,10 @@ type TableData = User | Album | Post;
 
 interface TableProps {
   data: TableData[];
+  onEdit: (item: TableData) => void; 
 }
 
-export default function Table({ data }: TableProps) {
+export default function Table({ data, onEdit }: TableProps) {
   if (!data || data.length === 0) {
     return <div>No hay datos disponibles</div>;
   }
@@ -34,6 +36,7 @@ export default function Table({ data }: TableProps) {
             {headers.map((header) => (
               <TableCell key={header}>{header}</TableCell>
             ))}
+            <TableCell>Edit</TableCell>{" "}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -44,6 +47,15 @@ export default function Table({ data }: TableProps) {
                   {item[header as keyof TableData]}
                 </TableCell>
               ))}
+              <TableCell>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => onEdit(item)} 
+                >
+                  Editar
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

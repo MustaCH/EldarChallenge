@@ -5,6 +5,7 @@ import { getUsers, getPosts, getAlbums } from "../../services/api";
 import { Post, Album } from "../../types/data";
 import { User } from "../../types/user";
 import SearchBar from "../../components/search-bar";
+import EditModal from "../../components/modal";
 
 type DataType = "users" | "posts" | "albums";
 
@@ -14,33 +15,44 @@ export default function Backoffice() {
   const [filteredData, setFilteredData] = useState<User[] | Album[] | Post[]>(
     []
   );
+  const [selectedItem, setSelectedItem] = useState<User | Album | Post>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = (query: string) => {
+    let filtered: User[] | Album[] | Post[] = [];
     if (dataType === "users") {
-      setFilteredData(
-        (data as User[]).filter(
-          (user) =>
-            user.id.toString().includes(query) ||
-            user.name.toLowerCase().includes(query.toLowerCase())
-        )
+      filtered = (data as User[]).filter(
+        (user) =>
+          user.id.toString().includes(query) ||
+          user.name.toLowerCase().includes(query.toLowerCase())
       );
     } else if (dataType === "albums") {
-      setFilteredData(
-        (data as Album[]).filter(
-          (album) =>
-            album.id.toString().includes(query) ||
-            album.title.toLowerCase().includes(query.toLowerCase())
-        )
+      filtered = (data as Album[]).filter(
+        (album) =>
+          album.id.toString().includes(query) ||
+          album.title.toLowerCase().includes(query.toLowerCase())
       );
     } else if (dataType === "posts") {
-      setFilteredData(
-        (data as Post[]).filter(
-          (post) =>
-            post.id.toString().includes(query) ||
-            post.title.toLowerCase().includes(query.toLowerCase())
-        )
+      filtered = (data as Post[]).filter(
+        (post) =>
+          post.id.toString().includes(query) ||
+          post.title.toLowerCase().includes(query.toLowerCase())
       );
     }
+    setFilteredData(filtered);
+  };
+
+  const handleEdit = (item: User | Album | Post) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleSave = (updatedItem: User | Album | Post) => {
+    setIsModalOpen(false);
+  };
+
+  const handleDelete = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -84,7 +96,16 @@ export default function Backoffice() {
       </Stack>
       <Box>
         <SearchBar onSearch={handleSearch} dataType={dataType} />
-        <Table data={filteredData} />
+        <Table data={filteredData} onEdit={handleEdit} />
+        {selectedItem && (
+          <EditModal
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            data={selectedItem}
+            onSave={handleSave}
+            onDelete={handleDelete}
+          />
+        )}
       </Box>
     </Stack>
   );

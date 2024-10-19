@@ -60,11 +60,34 @@ export const getUsers = async (): Promise<User[]> => {
   return [...data, ...customUsers];
 };
 
+export const createUser = async (newUser: User): Promise<User> => {
+  const { data } = await axios.post(
+    "https://jsonplaceholder.typicode.com/users",
+    newUser
+  );
+  return data;
+};
+
 export const getPosts = async (): Promise<Post[]> => {
   const { data } = await axios.get(
     "https://jsonplaceholder.typicode.com/posts"
   );
   return data;
+};
+
+export const updatePost = async (
+  id: number,
+  updatedPost: Post
+): Promise<Post> => {
+  const { data } = await axios.put(
+    `https://jsonplaceholder.typicode.com/posts/${id}`,
+    updatedPost
+  );
+  return data;
+};
+
+export const deletePost = async (id: number): Promise<void> => {
+  await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
 };
 
 export const getAlbums = async (): Promise<Album[]> => {
@@ -74,11 +97,26 @@ export const getAlbums = async (): Promise<Album[]> => {
   return data;
 };
 
+export const updateAlbum = async (
+  id: number,
+  updatedAlbum: Album
+): Promise<Album> => {
+  const { data } = await axios.put(
+    `https://jsonplaceholder.typicode.com/albums/${id}`,
+    updatedAlbum
+  );
+  return data;
+};
+
 export const getAlbumById = async (id: number): Promise<Album> => {
   const { data } = await axios.get(
     `https://jsonplaceholder.typicode.com/albums/${id}`
   );
   return data;
+};
+
+export const deleteAlbum = async (id: number): Promise<void> => {
+  await axios.delete(`https://jsonplaceholder.typicode.com/albums/${id}`);
 };
 
 export const getPhotos = async (): Promise<Photo[]> => {
